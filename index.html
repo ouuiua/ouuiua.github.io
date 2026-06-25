@@ -1,20 +1,857 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>eac102.cc.cd</title>
-  <style>
-    body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; background: #1a1a2e; color: #eee; }
-    .container { text-align: center; }
-    h1 { color: #00d4ff; }
-    p { color: #aaa; }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>十五级乡中心幼儿园 · 最近动态</title>
+    <!-- Font Awesome 图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        /* ----- 全局重置 ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'PingFang SC', Roboto, 'Helvetica Neue', sans-serif;
+            background: #fdf8f0;
+            color: #3d2c1e;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ----- 容器 ----- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ----- 顶部品牌栏 ----- */
+        .brand-bar {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            padding: 22px 0 18px;
+            border-bottom: 4px solid #f9a825;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        .brand-bar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .brand .logo-icon {
+            font-size: 2.8rem;
+            color: #f9a825;
+        }
+
+        .brand h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #3d2c1e;
+            letter-spacing: 2px;
+        }
+
+        .brand h1 span {
+            color: #f9a825;
+        }
+
+        .brand .sub {
+            font-size: 0.95rem;
+            color: #795548;
+            font-weight: 500;
+            margin-top: 2px;
+            letter-spacing: 1px;
+        }
+
+        .brand-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 0.95rem;
+            color: #5d4037;
+        }
+
+        .brand-right i {
+            color: #f9a825;
+            margin-right: 6px;
+        }
+
+        .brand-right .date-badge {
+            background: #fff;
+            padding: 6px 18px;
+            border-radius: 30px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+            font-weight: 500;
+        }
+
+        /* ----- 页面主标题 ----- */
+        .page-header {
+            text-align: center;
+            padding: 40px 0 16px;
+        }
+
+        .page-header h2 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #3d2c1e;
+        }
+
+        .page-header h2 i {
+            color: #f9a825;
+            margin-right: 12px;
+        }
+
+        .page-header p {
+            color: #6d4c41;
+            font-size: 1.1rem;
+            margin-top: 6px;
+        }
+
+        .page-header .underline {
+            width: 80px;
+            height: 5px;
+            background: linear-gradient(90deg, #f9a825, #ff6f00);
+            margin: 12px auto 0;
+            border-radius: 10px;
+        }
+
+        /* ----- 动态滚动区（核心） ----- */
+        .dynamic-section {
+            flex: 1;
+            padding: 20px 0 60px;
+            display: flex;
+            align-items: center;
+        }
+
+        .carousel-wrapper {
+            position: relative;
+            width: 100%;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            background: #ffffff;
+            border: 1px solid #f5e6d3;
+        }
+
+        /* 轮播轨道 */
+        .carousel-track {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            display: flex;
+            flex-direction: column;
+            background: #fffaf2;
+        }
+
+        /* 图片区域 —— 使用 Emoji 或纯色块 + 图标模拟 */
+        .slide-image {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 7rem;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide-image .emoji-big {
+            font-size: 7rem;
+            line-height: 1.2;
+            filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.06));
+            z-index: 2;
+        }
+
+        .slide-image .image-label {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #3d2c1e;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+            z-index: 3;
+            letter-spacing: 0.5px;
+        }
+
+        .slide-image .image-label i {
+            color: #f9a825;
+            margin-right: 6px;
+        }
+
+        /* 装饰小元素 */
+        .slide-image .deco {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.12;
+            z-index: 1;
+        }
+
+        .slide-image .deco.d1 {
+            top: 10%;
+            left: 8%;
+            font-size: 4rem;
+        }
+        .slide-image .deco.d2 {
+            bottom: 12%;
+            right: 6%;
+            font-size: 5rem;
+        }
+        .slide-image .deco.d3 {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 14rem;
+            opacity: 0.04;
+        }
+
+        /* 文字说明区域 */
+        .slide-caption {
+            padding: 24px 32px 32px;
+            background: #ffffff;
+            border-top: 2px solid #f5e6d3;
+        }
+
+        .slide-caption .caption-tag {
+            display: inline-block;
+            background: #f9a825;
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 3px 16px;
+            border-radius: 30px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .slide-caption h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #3d2c1e;
+            margin-bottom: 6px;
+        }
+
+        .slide-caption h3 i {
+            color: #f9a825;
+            margin-right: 10px;
+        }
+
+        .slide-caption .caption-meta {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 10px 0 12px;
+            font-size: 0.9rem;
+            color: #8d6e63;
+        }
+
+        .slide-caption .caption-meta i {
+            color: #f9a825;
+            margin-right: 4px;
+        }
+
+        .slide-caption .caption-desc {
+            font-size: 1.05rem;
+            color: #5d4037;
+            line-height: 1.7;
+            max-width: 90%;
+        }
+
+        .slide-caption .caption-desc i {
+            color: #f9a825;
+        }
+
+        /* ----- 轮播控制按钮 ----- */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: none;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 20;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.10);
+            transition: all 0.3s ease;
+            color: #3d2c1e;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-btn:hover {
+            background: #f9a825;
+            color: #fff;
+            box-shadow: 0 6px 28px rgba(249, 168, 37, 0.35);
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .carousel-btn.prev {
+            left: 16px;
+        }
+
+        .carousel-btn.next {
+            right: 16px;
+        }
+
+        /* ----- 底部指示点 ----- */
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            padding: 18px 0 22px;
+            background: #ffffff;
+            border-top: 1px solid #f5e6d3;
+        }
+
+        .dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #e0d5c8;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .dot.active {
+            background: #f9a825;
+            transform: scale(1.25);
+            border-color: #fff;
+            box-shadow: 0 0 0 3px #f9a82540;
+        }
+
+        .dot:hover {
+            background: #f9a825;
+            opacity: 0.7;
+        }
+
+        /* ----- 底部信息 ----- */
+        .footer-bar {
+            background: #2c1a0e;
+            color: #d7ccc8;
+            padding: 18px 0;
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
+
+        .footer-bar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .footer-bar .brand-name {
+            color: #f9a825;
+            font-weight: 700;
+        }
+
+        .footer-bar i {
+            color: #f9a825;
+            margin: 0 4px;
+        }
+
+        .footer-bar a {
+            color: #f9a825;
+            transition: color 0.3s;
+        }
+
+        .footer-bar a:hover {
+            color: #ff8f00;
+        }
+
+        /* ----- 响应式 ----- */
+        @media (max-width: 900px) {
+            .brand h1 {
+                font-size: 1.8rem;
+            }
+            .slide-caption h3 {
+                font-size: 1.3rem;
+            }
+            .slide-caption .caption-desc {
+                max-width: 100%;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .brand-bar .container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .brand-right {
+                width: 100%;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+                gap: 10px;
+                font-size: 0.85rem;
+            }
+            .brand h1 {
+                font-size: 1.5rem;
+            }
+            .brand .logo-icon {
+                font-size: 2.2rem;
+            }
+            .page-header h2 {
+                font-size: 1.8rem;
+            }
+            .slide-image {
+                aspect-ratio: 4 / 3;
+                font-size: 5rem;
+            }
+            .slide-image .emoji-big {
+                font-size: 5rem;
+            }
+            .slide-caption {
+                padding: 18px 20px 24px;
+            }
+            .slide-caption h3 {
+                font-size: 1.15rem;
+            }
+            .slide-caption .caption-meta {
+                font-size: 0.8rem;
+                gap: 12px;
+            }
+            .carousel-btn {
+                width: 38px;
+                height: 38px;
+                font-size: 1rem;
+            }
+            .carousel-btn.prev {
+                left: 8px;
+            }
+            .carousel-btn.next {
+                right: 8px;
+            }
+            .carousel-dots {
+                gap: 10px;
+                padding: 14px 0 18px;
+            }
+            .dot {
+                width: 12px;
+                height: 12px;
+            }
+            .footer-bar .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .slide-image .image-label {
+                top: 12px;
+                right: 14px;
+                font-size: 0.7rem;
+                padding: 4px 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .brand h1 {
+                font-size: 1.3rem;
+            }
+            .brand .sub {
+                font-size: 0.8rem;
+            }
+            .page-header h2 {
+                font-size: 1.5rem;
+            }
+            .page-header p {
+                font-size: 0.95rem;
+            }
+            .slide-image {
+                aspect-ratio: 1 / 1;
+                font-size: 4rem;
+            }
+            .slide-image .emoji-big {
+                font-size: 4rem;
+            }
+            .slide-caption h3 {
+                font-size: 1rem;
+            }
+            .slide-caption .caption-desc {
+                font-size: 0.9rem;
+            }
+            .carousel-btn {
+                width: 32px;
+                height: 32px;
+                font-size: 0.8rem;
+            }
+            .carousel-btn.prev {
+                left: 4px;
+            }
+            .carousel-btn.next {
+                right: 4px;
+            }
+            .dot {
+                width: 10px;
+                height: 10px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <div class="container">
-    <h1>Welcome to eac102.cc.cd</h1>
-    <p>This site is hosted on GitHub Pages</p>
-  </div>
+
+    <!-- ===== 顶部品牌栏 ===== -->
+    <header class="brand-bar">
+        <div class="container">
+            <div class="brand">
+                <i class="fas fa-seedling logo-icon"></i>
+                <div>
+                    <h1><span>十五级乡</span>中心幼儿园</h1>
+                    <div class="sub"><i class="fas fa-map-pin" style="color:#f9a825;"></i> 乡土 · 自然 · 爱</div>
+                </div>
+            </div>
+            <div class="brand-right">
+                <span class="date-badge"><i class="far fa-calendar-alt"></i> 2026年6月26日</span>
+                <span><i class="fas fa-phone-alt"></i> 0317-8888 6666</span>
+                <span><i class="fas fa-envelope"></i> shiwuji@edu.cn</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== 页面主标题 ===== -->
+    <section class="page-header">
+        <div class="container">
+            <h2><i class="fas fa-bullhorn"></i> 最近动态</h2>
+            <p>记录孩子们在园的每一个精彩瞬间 · 家园共育 温暖同行</p>
+            <div class="underline"></div>
+        </div>
+    </section>
+
+    <!-- ===== 动态滚动区（核心） ===== -->
+    <section class="dynamic-section">
+        <div class="container">
+
+            <div class="carousel-wrapper">
+
+                <!-- 轮播轨道 -->
+                <div class="carousel-track" id="carouselTrack">
+
+                    <!-- ===== 🔥 新增：毕业季动态（放在第一位） ===== -->
+                    <div class="carousel-slide">
+                        <div class="slide-image" style="background: linear-gradient(135deg, #FFF8E1, #FFE082);">
+                            <span class="image-label"><i class="fas fa-image"></i> 毕业1.jpg</span>
+                            <span class="deco d1">🎓</span>
+                            <span class="deco d2">💐</span>
+                            <span class="deco d3">🌟</span>
+                            <span class="emoji-big">🎓👧🧒</span>
+                        </div>
+                        <div class="slide-caption">
+                            <span class="caption-tag"><i class="fas fa-graduation-cap"></i> 毕业季</span>
+                            <h3><i class="fas fa-heart"></i> 我们毕业了！</h3>
+                            <div class="caption-meta">
+                                <span><i class="far fa-clock"></i> 2026年6月26日</span>
+                                <span><i class="fas fa-users"></i> 大班全体幼儿</span>
+                                <span><i class="fas fa-map-marker-alt"></i> 幼儿园礼堂</span>
+                            </div>
+                            <div class="caption-desc">
+                                <i class="fas fa-quote-left" style="opacity:0.4;"></i>
+                                笑脸下面尽是不舍... 今天，我们告别了熟悉的滑梯和教室，
+                                但每一张笑脸都印在了老师的心中。愿你们带着勇气与爱，奔赴下一场山海。
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== 动态 1（原） ===== -->
+                    <div class="carousel-slide">
+                        <div class="slide-image" style="background: linear-gradient(135deg, #FFF3E0, #FFE0B2);">
+                            <span class="image-label"><i class="fas fa-calendar-check"></i> 2026.06.20</span>
+                            <span class="deco d1">🌻</span>
+                            <span class="deco d2">🌈</span>
+                            <span class="deco d3">🌳</span>
+                            <span class="emoji-big">🏡🌿</span>
+                        </div>
+                        <div class="slide-caption">
+                            <span class="caption-tag"><i class="fas fa-star"></i> 园所活动</span>
+                            <h3><i class="fas fa-tree"></i> “自然探秘” 户外种植日</h3>
+                            <div class="caption-meta">
+                                <span><i class="far fa-clock"></i> 2026年6月20日</span>
+                                <span><i class="fas fa-users"></i> 全体中大班幼儿</span>
+                                <span><i class="fas fa-map-marker-alt"></i> 园内种植园</span>
+                            </div>
+                            <div class="caption-desc">
+                                <i class="fas fa-quote-left" style="opacity:0.4;"></i>
+                                孩子们亲手种下番茄、黄瓜和向日葵，在泥土中感受生命的力量。
+                                观察、浇水、记录…… 每一颗小苗都是童年的伙伴。
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== 动态 2 ===== -->
+                    <div class="carousel-slide">
+                        <div class="slide-image" style="background: linear-gradient(135deg, #E3F2FD, #BBDEFB);">
+                            <span class="image-label"><i class="fas fa-calendar-check"></i> 2026.06.18</span>
+                            <span class="deco d1">📖</span>
+                            <span class="deco d2">✨</span>
+                            <span class="deco d3">🧸</span>
+                            <span class="emoji-big">📚🎨</span>
+                        </div>
+                        <div class="slide-caption">
+                            <span class="caption-tag"><i class="fas fa-paint-brush"></i> 特色课程</span>
+                            <h3><i class="fas fa-book-open"></i> 绘本剧场 · 创意美术展</h3>
+                            <div class="caption-meta">
+                                <span><i class="far fa-clock"></i> 2026年6月18日</span>
+                                <span><i class="fas fa-users"></i> 小班 · 中班</span>
+                                <span><i class="fas fa-map-marker-alt"></i> 多功能艺术厅</span>
+                            </div>
+                            <div class="caption-desc">
+                                <i class="fas fa-quote-left" style="opacity:0.4;"></i>
+                                将绘本故事《好饿的毛毛虫》搬上小舞台，孩子们用画笔、
+                                黏土和肢体语言演绎故事，在艺术中学会表达与创造。
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== 动态 3 ===== -->
+                    <div class="carousel-slide">
+                        <div class="slide-image" style="background: linear-gradient(135deg, #E8F5E9, #C8E6C9);">
+                            <span class="image-label"><i class="fas fa-calendar-check"></i> 2026.06.15</span>
+                            <span class="deco d1">🍎</span>
+                            <span class="deco d2">🥗</span>
+                            <span class="deco d3">🧁</span>
+                            <span class="emoji-big">🍉🥕</span>
+                        </div>
+                        <div class="slide-caption">
+                            <span class="caption-tag"><i class="fas fa-heart"></i> 健康膳食</span>
+                            <h3><i class="fas fa-apple-alt"></i> 夏日营养自助餐会</h3>
+                            <div class="caption-meta">
+                                <span><i class="far fa-clock"></i> 2026年6月15日</span>
+                                <span><i class="fas fa-users"></i> 全园幼儿</span>
+                                <span><i class="fas fa-map-marker-alt"></i> 各班教室</span>
+                            </div>
+                            <div class="caption-desc">
+                                <i class="fas fa-quote-left" style="opacity:0.4;"></i>
+                                新鲜水果、蔬菜沙拉、杂粮小点…… 孩子们自己搭配餐盘，
+                                在品尝美味的同时学习均衡营养，从小养成健康饮食习惯。
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== 动态 4 ===== -->
+                    <div class="carousel-slide">
+                        <div class="slide-image" style="background: linear-gradient(135deg, #FCE4EC, #F8BBD0);">
+                            <span class="image-label"><i class="fas fa-calendar-check"></i> 2026.06.12</span>
+                            <span class="deco d1">🎵</span>
+                            <span class="deco d2">💃</span>
+                            <span class="deco d3">🎶</span>
+                            <span class="emoji-big">🎤🥁</span>
+                        </div>
+                        <div class="slide-caption">
+                            <span class="caption-tag"><i class="fas fa-music"></i> 艺术节</span>
+                            <h3><i class="fas fa-guitar"></i> “童心绽放” 音乐律动汇演</h3>
+                            <div class="caption-meta">
+                                <span><i class="far fa-clock"></i> 2026年6月12日</span>
+                                <span><i class="fas fa-users"></i> 大班 · 中班</span>
+                                <span><i class="fas fa-map-marker-alt"></i> 园内小剧场</span>
+                            </div>
+                            <div class="caption-desc">
+                                <i class="fas fa-quote-left" style="opacity:0.4;"></i>
+                                非洲鼓、手铃、合唱…… 孩子们用节奏和歌声表达快乐。
+                                小小的舞台，大大的梦想，每一个音符都是童年的光芒。
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== 动态 5 ===== -->
+                    <div class="carousel-slide">
+                        <div class="slide-image" style="background: linear-gradient(135deg, #EDE7F6, #D1C4E9);">
+                            <span class="image-label"><i class="fas fa-calendar-check"></i> 2026.06.08</span>
+                            <span class="deco d1">🏅</span>
+                            <span class="deco d2">⚽</span>
+                            <span class="deco d3">💪</span>
+                            <span class="emoji-big">🏃‍♂️🏃‍♀️</span>
+                        </div>
+                        <div class="slide-caption">
+                            <span class="caption-tag"><i class="fas fa-trophy"></i> 体能活动</span>
+                            <h3><i class="fas fa-running"></i> 趣味运动会 · 亲子同行</h3>
+                            <div class="caption-meta">
+                                <span><i class="far fa-clock"></i> 2026年6月8日</span>
+                                <span><i class="fas fa-users"></i> 全园亲子家庭</span>
+                                <span><i class="fas fa-map-marker-alt"></i> 户外大操场</span>
+                            </div>
+                            <div class="caption-desc">
+                                <i class="fas fa-quote-left" style="opacity:0.4;"></i>
+                                毛毛虫竞速、袋鼠跳、接力跑…… 爸爸妈妈和孩子们一起
+                                挥洒汗水，在欢笑中感受运动的快乐，增进亲子情感。
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- 左右控制按钮 -->
+                <button class="carousel-btn prev" id="prevBtn" aria-label="上一页">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-btn next" id="nextBtn" aria-label="下一页">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+
+                <!-- 指示点 -->
+                <div class="carousel-dots" id="carouselDots"></div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===== 底部信息 ===== -->
+    <footer class="footer-bar">
+        <div class="container">
+            <span>
+                © 2026 <span class="brand-name">十五级乡中心幼儿园</span>
+                <i class="fas fa-heart"></i> 用心做教育
+            </span>
+            <span>
+                <i class="fas fa-map-pin"></i> 十五级乡中心街 88 号
+                <i class="fas fa-phone-alt" style="margin-left:16px;"></i> 0317-8888 6666
+            </span>
+            <span>
+                <a href="#"><i class="fab fa-weixin"></i></a>
+                <a href="#" style="margin-left:12px;"><i class="fab fa-weibo"></i></a>
+                <a href="#" style="margin-left:12px;"><i class="fab fa-tiktok"></i></a>
+            </span>
+        </div>
+    </footer>
+
+    <!-- ===== JavaScript 轮播逻辑 ===== -->
+    <script>
+        (function() {
+            const track = document.getElementById('carouselTrack');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const dotsContainer = document.getElementById('carouselDots');
+            const slides = track.querySelectorAll('.carousel-slide');
+            let currentIndex = 0;
+            const totalSlides = slides.length;
+            let autoPlayTimer = null;
+            const AUTO_INTERVAL = 4000; // 4秒自动切换
+
+            // --- 创建指示点 ---
+            slides.forEach((_, index) => {
+                const dot = document.createElement('span');
+                dot.classList.add('dot');
+                if (index === 0) dot.classList.add('active');
+                dot.dataset.index = index;
+                dot.addEventListener('click', () => goToSlide(index));
+                dotsContainer.appendChild(dot);
+            });
+            const dots = dotsContainer.querySelectorAll('.dot');
+
+            // --- 跳转到指定幻灯片 ---
+            function goToSlide(index) {
+                if (index < 0) index = totalSlides - 1;
+                if (index >= totalSlides) index = 0;
+                currentIndex = index;
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === currentIndex);
+                });
+                resetAutoPlay();
+            }
+
+            // --- 上一张 / 下一张 ---
+            function prevSlide() { goToSlide(currentIndex - 1); }
+            function nextSlide() { goToSlide(currentIndex + 1); }
+
+            // --- 自动播放控制 ---
+            function resetAutoPlay() {
+                if (autoPlayTimer) {
+                    clearInterval(autoPlayTimer);
+                    autoPlayTimer = null;
+                }
+                autoPlayTimer = setInterval(nextSlide, AUTO_INTERVAL);
+            }
+
+            function pauseAutoPlay() {
+                if (autoPlayTimer) {
+                    clearInterval(autoPlayTimer);
+                    autoPlayTimer = null;
+                }
+            }
+
+            // --- 绑定事件 ---
+            prevBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                prevSlide();
+            });
+            nextBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                nextSlide();
+            });
+
+            // 鼠标悬停暂停 / 离开恢复
+            const wrapper = document.querySelector('.carousel-wrapper');
+            wrapper.addEventListener('mouseenter', pauseAutoPlay);
+            wrapper.addEventListener('mouseleave', resetAutoPlay);
+
+            // 触摸滑动支持
+            let touchStartX = 0;
+            let touchEndX = 0;
+            wrapper.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+            wrapper.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                const diff = touchStartX - touchEndX;
+                if (Math.abs(diff) > 30) {
+                    if (diff > 0) nextSlide();
+                    else prevSlide();
+                }
+            }, { passive: true });
+
+            // --- 启动自动播放 ---
+            resetAutoPlay();
+
+            // 页面可见性变化时暂停/恢复（提升体验）
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) {
+                    pauseAutoPlay();
+                } else {
+                    resetAutoPlay();
+                }
+            });
+
+        })();
+    </script>
+
 </body>
 </html>
