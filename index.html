@@ -1,857 +1,606 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>十五级乡中心幼儿园 · 最近动态</title>
-    <!-- Font Awesome 图标库 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <style>
-        /* ----- 全局重置 ----- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>十五级乡中心幼儿园</title>
+<link rel="icon" href="校徽.png" type="image/png">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        body {
-            font-family: 'Segoe UI', 'PingFang SC', Roboto, 'Helvetica Neue', sans-serif;
-            background: #fdf8f0;
-            color: #3d2c1e;
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
+  :root {
+    --black: #1a1a1a;
+    --gray-900: #2c2c2c;
+    --gray-700: #555555;
+    --gray-500: #888888;
+    --gray-400: #aaaaaa;
+    --gray-300: #cccccc;
+    --gray-200: #e5e5e5;
+    --gray-100: #f5f5f5;
+    --white: #ffffff;
+    --transition: 0.2s ease;
+  }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
+  html { scroll-behavior: smooth; }
 
-        /* ----- 容器 ----- */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+    color: var(--black);
+    background: var(--white);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
 
-        /* ----- 顶部品牌栏 ----- */
-        .brand-bar {
-            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
-            padding: 22px 0 18px;
-            border-bottom: 4px solid #f9a825;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-        }
+  /* ========== NAV ========== */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.95);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--gray-200);
+  }
 
-        .brand-bar .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 16px;
-        }
+  .nav-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 32px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--black);
+  }
 
-        .brand .logo-icon {
-            font-size: 2.8rem;
-            color: #f9a825;
-        }
+  .nav-logo {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
 
-        .brand h1 {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: #3d2c1e;
-            letter-spacing: 2px;
-        }
+  .nav-name {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
 
-        .brand h1 span {
-            color: #f9a825;
-        }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+  }
 
-        .brand .sub {
-            font-size: 0.95rem;
-            color: #795548;
-            font-weight: 500;
-            margin-top: 2px;
-            letter-spacing: 1px;
-        }
+  .nav-links a {
+    font-size: 14px;
+    color: var(--gray-700);
+    text-decoration: none;
+    transition: color var(--transition);
+  }
 
-        .brand-right {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            font-size: 0.95rem;
-            color: #5d4037;
-        }
+  .nav-links a:hover,
+  .nav-links a.active {
+    color: var(--black);
+  }
 
-        .brand-right i {
-            color: #f9a825;
-            margin-right: 6px;
-        }
+  /* ========== MAIN WRAPPER ========== */
+  .main {
+    padding-top: 56px;
+  }
 
-        .brand-right .date-badge {
-            background: #fff;
-            padding: 6px 18px;
-            border-radius: 30px;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
-            font-weight: 500;
-        }
+  /* ========== HERO ========== */
+  .hero {
+    padding: 120px 32px 80px;
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+  }
 
-        /* ----- 页面主标题 ----- */
-        .page-header {
-            text-align: center;
-            padding: 40px 0 16px;
-        }
+  .hero-logo {
+    width: 216px;
+    height: 216px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 32px;
+    border: 1px solid var(--gray-200);
+  }
 
-        .page-header h2 {
-            font-size: 2.4rem;
-            font-weight: 700;
-            color: #3d2c1e;
-        }
+  .hero h1 {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--black);
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+    line-height: 1.3;
+  }
 
-        .page-header h2 i {
-            color: #f9a825;
-            margin-right: 12px;
-        }
+  .hero p {
+    font-size: 16px;
+    color: var(--gray-500);
+    font-weight: 300;
+    line-height: 1.8;
+    max-width: 520px;
+    margin: 0 auto;
+  }
 
-        .page-header p {
-            color: #6d4c41;
-            font-size: 1.1rem;
-            margin-top: 6px;
-        }
+  .hero-divider {
+    width: 40px;
+    height: 1px;
+    background: var(--gray-300);
+    margin: 48px auto 0;
+  }
 
-        .page-header .underline {
-            width: 80px;
-            height: 5px;
-            background: linear-gradient(90deg, #f9a825, #ff6f00);
-            margin: 12px auto 0;
-            border-radius: 10px;
-        }
+  /* ========== CONTENT ========== */
+  .content {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 32px 120px;
+  }
 
-        /* ----- 动态滚动区（核心） ----- */
-        .dynamic-section {
-            flex: 1;
-            padding: 20px 0 60px;
-            display: flex;
-            align-items: center;
-        }
+  .content-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray-400);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
 
-        .carousel-wrapper {
-            position: relative;
-            width: 100%;
-            border-radius: 32px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
-            background: #ffffff;
-            border: 1px solid #f5e6d3;
-        }
+  .content-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--black);
+    margin-bottom: 8px;
+  }
 
-        /* 轮播轨道 */
-        .carousel-track {
-            display: flex;
-            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
+  .content-desc {
+    font-size: 14px;
+    color: var(--gray-500);
+    font-weight: 300;
+    margin-bottom: 48px;
+    line-height: 1.8;
+  }
 
-        .carousel-slide {
-            min-width: 100%;
-            display: flex;
-            flex-direction: column;
-            background: #fffaf2;
-        }
+  /* ========== CAROUSEL ========== */
+  .carousel-wrapper {
+    position: relative;
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    overflow: hidden;
+  }
 
-        /* 图片区域 —— 使用 Emoji 或纯色块 + 图标模拟 */
-        .slide-image {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            font-size: 7rem;
-            padding: 30px;
-            position: relative;
-            overflow: hidden;
-        }
+  .carousel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--gray-200);
+  }
 
-        .slide-image .emoji-big {
-            font-size: 7rem;
-            line-height: 1.2;
-            filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.06));
-            z-index: 2;
-        }
+  .carousel-header-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray-400);
+    letter-spacing: 1px;
+  }
 
-        .slide-image .image-label {
-            position: absolute;
-            top: 20px;
-            right: 24px;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            padding: 6px 18px;
-            border-radius: 40px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: #3d2c1e;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
-            z-index: 3;
-            letter-spacing: 0.5px;
-        }
+  .carousel-header-count {
+    font-size: 13px;
+    color: var(--gray-400);
+    font-variant-numeric: tabular-nums;
+  }
 
-        .slide-image .image-label i {
-            color: #f9a825;
-            margin-right: 6px;
-        }
+  .carousel-header-count .cur {
+    color: var(--black);
+    font-weight: 600;
+  }
 
-        /* 装饰小元素 */
-        .slide-image .deco {
-            position: absolute;
-            font-size: 2rem;
-            opacity: 0.12;
-            z-index: 1;
-        }
+  .carousel-viewport {
+    overflow: hidden;
+  }
 
-        .slide-image .deco.d1 {
-            top: 10%;
-            left: 8%;
-            font-size: 4rem;
-        }
-        .slide-image .deco.d2 {
-            bottom: 12%;
-            right: 6%;
-            font-size: 5rem;
-        }
-        .slide-image .deco.d3 {
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 14rem;
-            opacity: 0.04;
-        }
+  .carousel-track {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
 
-        /* 文字说明区域 */
-        .slide-caption {
-            padding: 24px 32px 32px;
-            background: #ffffff;
-            border-top: 2px solid #f5e6d3;
-        }
+  .carousel-track.paused {
+    transition: none;
+  }
 
-        .slide-caption .caption-tag {
-            display: inline-block;
-            background: #f9a825;
-            color: #fff;
-            font-size: 0.75rem;
-            font-weight: 700;
-            padding: 3px 16px;
-            border-radius: 30px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-        }
+  /* Full-width slide */
+  .slide {
+    min-width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
 
-        .slide-caption h3 {
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: #3d2c1e;
-            margin-bottom: 6px;
-        }
+  .slide-img-wrap {
+    width: 100%;
+    background: var(--gray-100);
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    cursor: zoom-in;
+  }
 
-        .slide-caption h3 i {
-            color: #f9a825;
-            margin-right: 10px;
-        }
+  .slide-img-wrap img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 720px;
+    object-fit: contain;
+    display: block;
+  }
 
-        .slide-caption .caption-meta {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin: 10px 0 12px;
-            font-size: 0.9rem;
-            color: #8d6e63;
-        }
+  .slide-caption {
+    padding: 20px 28px 24px;
+    border-top: 1px solid var(--gray-200);
+  }
 
-        .slide-caption .caption-meta i {
-            color: #f9a825;
-            margin-right: 4px;
-        }
+  .slide-tag {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--gray-400);
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
 
-        .slide-caption .caption-desc {
-            font-size: 1.05rem;
-            color: #5d4037;
-            line-height: 1.7;
-            max-width: 90%;
-        }
+  .slide-heading {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--black);
+    margin-bottom: 6px;
+    line-height: 1.5;
+  }
 
-        .slide-caption .caption-desc i {
-            color: #f9a825;
-        }
+  .slide-text {
+    font-size: 13px;
+    color: var(--gray-500);
+    font-weight: 300;
+    line-height: 1.7;
+  }
 
-        /* ----- 轮播控制按钮 ----- */
-        .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.92);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-            border: none;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 20;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.10);
-            transition: all 0.3s ease;
-            color: #3d2c1e;
-            font-size: 1.3rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+  /* ========== FLOATING SCROLL BUTTONS ========== */
+  .float-scroll {
+    position: fixed;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--gray-200);
+  }
 
-        .carousel-btn:hover {
-            background: #f9a825;
-            color: #fff;
-            box-shadow: 0 6px 28px rgba(249, 168, 37, 0.35);
-            transform: translateY(-50%) scale(1.05);
-        }
+  .float-scroll-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: var(--white);
+    border: none;
+    cursor: pointer;
+    transition: background var(--transition), color var(--transition);
+    color: var(--gray-500);
+  }
 
-        .carousel-btn.prev {
-            left: 16px;
-        }
+  .float-scroll-btn:hover {
+    background: var(--gray-100);
+    color: var(--black);
+  }
 
-        .carousel-btn.next {
-            right: 16px;
-        }
+  .float-scroll-btn svg {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+  }
 
-        /* ----- 底部指示点 ----- */
-        .carousel-dots {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            padding: 18px 0 22px;
-            background: #ffffff;
-            border-top: 1px solid #f5e6d3;
-        }
+  /* ========== IMAGE OVERLAY ========== */
+  .img-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 500;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
 
-        .dot {
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            background: #e0d5c8;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
+  .img-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
 
-        .dot.active {
-            background: #f9a825;
-            transform: scale(1.25);
-            border-color: #fff;
-            box-shadow: 0 0 0 3px #f9a82540;
-        }
+  .img-overlay img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+  }
 
-        .dot:hover {
-            background: #f9a825;
-            opacity: 0.7;
-        }
+  .img-overlay.open img {
+    transform: scale(1);
+  }
 
-        /* ----- 底部信息 ----- */
-        .footer-bar {
-            background: #2c1a0e;
-            color: #d7ccc8;
-            padding: 18px 0;
-            text-align: center;
-            font-size: 0.9rem;
-            margin-top: auto;
-        }
+  .img-overlay-close {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    transition: background var(--transition);
+  }
 
-        .footer-bar .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
+  .img-overlay-close:hover {
+    background: rgba(255,255,255,0.2);
+  }
 
-        .footer-bar .brand-name {
-            color: #f9a825;
-            font-weight: 700;
-        }
+  .img-overlay-close svg {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+    stroke-width: 2;
+    fill: none;
+  }
 
-        .footer-bar i {
-            color: #f9a825;
-            margin: 0 4px;
-        }
+  /* ========== FOOTER ========== */
+  .footer {
+    border-top: 1px solid var(--gray-200);
+    padding: 32px;
+    text-align: center;
+  }
 
-        .footer-bar a {
-            color: #f9a825;
-            transition: color 0.3s;
-        }
+  .footer-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
-        .footer-bar a:hover {
-            color: #ff8f00;
-        }
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
 
-        /* ----- 响应式 ----- */
-        @media (max-width: 900px) {
-            .brand h1 {
-                font-size: 1.8rem;
-            }
-            .slide-caption h3 {
-                font-size: 1.3rem;
-            }
-            .slide-caption .caption-desc {
-                max-width: 100%;
-                font-size: 1rem;
-            }
-        }
+  .footer-logo {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+  }
 
-        @media (max-width: 768px) {
-            .brand-bar .container {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .brand-right {
-                width: 100%;
-                justify-content: flex-start;
-                flex-wrap: wrap;
-                gap: 10px;
-                font-size: 0.85rem;
-            }
-            .brand h1 {
-                font-size: 1.5rem;
-            }
-            .brand .logo-icon {
-                font-size: 2.2rem;
-            }
-            .page-header h2 {
-                font-size: 1.8rem;
-            }
-            .slide-image {
-                aspect-ratio: 4 / 3;
-                font-size: 5rem;
-            }
-            .slide-image .emoji-big {
-                font-size: 5rem;
-            }
-            .slide-caption {
-                padding: 18px 20px 24px;
-            }
-            .slide-caption h3 {
-                font-size: 1.15rem;
-            }
-            .slide-caption .caption-meta {
-                font-size: 0.8rem;
-                gap: 12px;
-            }
-            .carousel-btn {
-                width: 38px;
-                height: 38px;
-                font-size: 1rem;
-            }
-            .carousel-btn.prev {
-                left: 8px;
-            }
-            .carousel-btn.next {
-                right: 8px;
-            }
-            .carousel-dots {
-                gap: 10px;
-                padding: 14px 0 18px;
-            }
-            .dot {
-                width: 12px;
-                height: 12px;
-            }
-            .footer-bar .container {
-                flex-direction: column;
-                text-align: center;
-            }
-            .slide-image .image-label {
-                top: 12px;
-                right: 14px;
-                font-size: 0.7rem;
-                padding: 4px 12px;
-            }
-        }
+  .footer-name {
+    font-size: 13px;
+    color: var(--gray-500);
+  }
 
-        @media (max-width: 480px) {
-            .brand h1 {
-                font-size: 1.3rem;
-            }
-            .brand .sub {
-                font-size: 0.8rem;
-            }
-            .page-header h2 {
-                font-size: 1.5rem;
-            }
-            .page-header p {
-                font-size: 0.95rem;
-            }
-            .slide-image {
-                aspect-ratio: 1 / 1;
-                font-size: 4rem;
-            }
-            .slide-image .emoji-big {
-                font-size: 4rem;
-            }
-            .slide-caption h3 {
-                font-size: 1rem;
-            }
-            .slide-caption .caption-desc {
-                font-size: 0.9rem;
-            }
-            .carousel-btn {
-                width: 32px;
-                height: 32px;
-                font-size: 0.8rem;
-            }
-            .carousel-btn.prev {
-                left: 4px;
-            }
-            .carousel-btn.next {
-                right: 4px;
-            }
-            .dot {
-                width: 10px;
-                height: 10px;
-            }
-        }
-    </style>
+  .footer-copy {
+    font-size: 12px;
+    color: var(--gray-400);
+  }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 768px) {
+    .hero { padding: 80px 24px 60px; }
+    .hero h1 { font-size: 28px; }
+    .hero-logo { width: 140px; height: 140px; }
+    .content { padding: 0 24px 80px; }
+    .slide-img-wrap img { max-height: 400px; }
+    .slide-caption { padding: 16px 20px 20px; }
+    .slide-heading { font-size: 16px; }
+    .footer-inner { flex-direction: column; gap: 12px; }
+    .float-scroll { right: 12px; }
+  }
+</style>
 </head>
-
 <body>
 
-    <!-- ===== 顶部品牌栏 ===== -->
-    <header class="brand-bar">
-        <div class="container">
-            <div class="brand">
-                <i class="fas fa-seedling logo-icon"></i>
-                <div>
-                    <h1><span>十五级乡</span>中心幼儿园</h1>
-                    <div class="sub"><i class="fas fa-map-pin" style="color:#f9a825;"></i> 乡土 · 自然 · 爱</div>
-                </div>
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="#">
+      <img class="nav-logo" src="校徽.png" alt="校徽">
+      <span class="nav-name">十五级乡中心幼儿园</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#" class="active">首页</a></li>
+      <li><a href="#news">最新动态</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="main">
+
+  <!-- HERO -->
+  <section class="hero">
+    <img class="hero-logo" src="校徽.png" alt="校徽">
+    <h1>十五级乡中心幼儿园</h1>
+    <p>在爱与陪伴中，见证孩子们从懵懂走向自信。<br>毕业不是终点，而是新旅程的起点。</p>
+    <div class="hero-divider"></div>
+  </section>
+
+  <!-- CONTENT -->
+  <section class="content" id="news">
+    <div class="content-label">News</div>
+    <h2 class="content-title">最近动态</h2>
+    <p class="content-desc">时光荏苒，孩子们即将踏上人生新的旅程。<br>让我们用镜头定格这些珍贵而温暖的瞬间。</p>
+
+    <div class="carousel-wrapper" id="carouselWrapper">
+      <div class="carousel-header">
+        <span class="carousel-header-label">毕业季</span>
+        <span class="carousel-header-count"><span class="cur" id="curNum">01</span> / 02</span>
+      </div>
+
+      <div class="carousel-viewport">
+        <div class="carousel-track" id="carouselTrack">
+
+          <div class="slide">
+            <div class="slide-img-wrap">
+              <img src="毕业1.jpg" alt="毕业照1">
             </div>
-            <div class="brand-right">
-                <span class="date-badge"><i class="far fa-calendar-alt"></i> 2026年6月26日</span>
-                <span><i class="fas fa-phone-alt"></i> 0317-8888 6666</span>
-                <span><i class="fas fa-envelope"></i> shiwuji@edu.cn</span>
+            <div class="slide-caption">
+              <div class="slide-tag">毕业典礼</div>
+              <div class="slide-heading">我们毕业了！</div>
+              <div class="slide-text">今天，我们告别了熟悉的教室和滑梯，但每一张笑脸都永远印在了老师的心中。</div>
             </div>
-        </div>
-    </header>
+          </div>
 
-    <!-- ===== 页面主标题 ===== -->
-    <section class="page-header">
-        <div class="container">
-            <h2><i class="fas fa-bullhorn"></i> 最近动态</h2>
-            <p>记录孩子们在园的每一个精彩瞬间 · 家园共育 温暖同行</p>
-            <div class="underline"></div>
-        </div>
-    </section>
-
-    <!-- ===== 动态滚动区（核心） ===== -->
-    <section class="dynamic-section">
-        <div class="container">
-
-            <div class="carousel-wrapper">
-
-                <!-- 轮播轨道 -->
-                <div class="carousel-track" id="carouselTrack">
-
-                    <!-- ===== 🔥 新增：毕业季动态（放在第一位） ===== -->
-                    <div class="carousel-slide">
-                        <div class="slide-image" style="background: linear-gradient(135deg, #FFF8E1, #FFE082);">
-                            <span class="image-label"><i class="fas fa-image"></i> 毕业1.jpg</span>
-                            <span class="deco d1">🎓</span>
-                            <span class="deco d2">💐</span>
-                            <span class="deco d3">🌟</span>
-                            <span class="emoji-big">🎓👧🧒</span>
-                        </div>
-                        <div class="slide-caption">
-                            <span class="caption-tag"><i class="fas fa-graduation-cap"></i> 毕业季</span>
-                            <h3><i class="fas fa-heart"></i> 我们毕业了！</h3>
-                            <div class="caption-meta">
-                                <span><i class="far fa-clock"></i> 2026年6月26日</span>
-                                <span><i class="fas fa-users"></i> 大班全体幼儿</span>
-                                <span><i class="fas fa-map-marker-alt"></i> 幼儿园礼堂</span>
-                            </div>
-                            <div class="caption-desc">
-                                <i class="fas fa-quote-left" style="opacity:0.4;"></i>
-                                笑脸下面尽是不舍... 今天，我们告别了熟悉的滑梯和教室，
-                                但每一张笑脸都印在了老师的心中。愿你们带着勇气与爱，奔赴下一场山海。
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- ===== 动态 1（原） ===== -->
-                    <div class="carousel-slide">
-                        <div class="slide-image" style="background: linear-gradient(135deg, #FFF3E0, #FFE0B2);">
-                            <span class="image-label"><i class="fas fa-calendar-check"></i> 2026.06.20</span>
-                            <span class="deco d1">🌻</span>
-                            <span class="deco d2">🌈</span>
-                            <span class="deco d3">🌳</span>
-                            <span class="emoji-big">🏡🌿</span>
-                        </div>
-                        <div class="slide-caption">
-                            <span class="caption-tag"><i class="fas fa-star"></i> 园所活动</span>
-                            <h3><i class="fas fa-tree"></i> “自然探秘” 户外种植日</h3>
-                            <div class="caption-meta">
-                                <span><i class="far fa-clock"></i> 2026年6月20日</span>
-                                <span><i class="fas fa-users"></i> 全体中大班幼儿</span>
-                                <span><i class="fas fa-map-marker-alt"></i> 园内种植园</span>
-                            </div>
-                            <div class="caption-desc">
-                                <i class="fas fa-quote-left" style="opacity:0.4;"></i>
-                                孩子们亲手种下番茄、黄瓜和向日葵，在泥土中感受生命的力量。
-                                观察、浇水、记录…… 每一颗小苗都是童年的伙伴。
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- ===== 动态 2 ===== -->
-                    <div class="carousel-slide">
-                        <div class="slide-image" style="background: linear-gradient(135deg, #E3F2FD, #BBDEFB);">
-                            <span class="image-label"><i class="fas fa-calendar-check"></i> 2026.06.18</span>
-                            <span class="deco d1">📖</span>
-                            <span class="deco d2">✨</span>
-                            <span class="deco d3">🧸</span>
-                            <span class="emoji-big">📚🎨</span>
-                        </div>
-                        <div class="slide-caption">
-                            <span class="caption-tag"><i class="fas fa-paint-brush"></i> 特色课程</span>
-                            <h3><i class="fas fa-book-open"></i> 绘本剧场 · 创意美术展</h3>
-                            <div class="caption-meta">
-                                <span><i class="far fa-clock"></i> 2026年6月18日</span>
-                                <span><i class="fas fa-users"></i> 小班 · 中班</span>
-                                <span><i class="fas fa-map-marker-alt"></i> 多功能艺术厅</span>
-                            </div>
-                            <div class="caption-desc">
-                                <i class="fas fa-quote-left" style="opacity:0.4;"></i>
-                                将绘本故事《好饿的毛毛虫》搬上小舞台，孩子们用画笔、
-                                黏土和肢体语言演绎故事，在艺术中学会表达与创造。
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- ===== 动态 3 ===== -->
-                    <div class="carousel-slide">
-                        <div class="slide-image" style="background: linear-gradient(135deg, #E8F5E9, #C8E6C9);">
-                            <span class="image-label"><i class="fas fa-calendar-check"></i> 2026.06.15</span>
-                            <span class="deco d1">🍎</span>
-                            <span class="deco d2">🥗</span>
-                            <span class="deco d3">🧁</span>
-                            <span class="emoji-big">🍉🥕</span>
-                        </div>
-                        <div class="slide-caption">
-                            <span class="caption-tag"><i class="fas fa-heart"></i> 健康膳食</span>
-                            <h3><i class="fas fa-apple-alt"></i> 夏日营养自助餐会</h3>
-                            <div class="caption-meta">
-                                <span><i class="far fa-clock"></i> 2026年6月15日</span>
-                                <span><i class="fas fa-users"></i> 全园幼儿</span>
-                                <span><i class="fas fa-map-marker-alt"></i> 各班教室</span>
-                            </div>
-                            <div class="caption-desc">
-                                <i class="fas fa-quote-left" style="opacity:0.4;"></i>
-                                新鲜水果、蔬菜沙拉、杂粮小点…… 孩子们自己搭配餐盘，
-                                在品尝美味的同时学习均衡营养，从小养成健康饮食习惯。
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- ===== 动态 4 ===== -->
-                    <div class="carousel-slide">
-                        <div class="slide-image" style="background: linear-gradient(135deg, #FCE4EC, #F8BBD0);">
-                            <span class="image-label"><i class="fas fa-calendar-check"></i> 2026.06.12</span>
-                            <span class="deco d1">🎵</span>
-                            <span class="deco d2">💃</span>
-                            <span class="deco d3">🎶</span>
-                            <span class="emoji-big">🎤🥁</span>
-                        </div>
-                        <div class="slide-caption">
-                            <span class="caption-tag"><i class="fas fa-music"></i> 艺术节</span>
-                            <h3><i class="fas fa-guitar"></i> “童心绽放” 音乐律动汇演</h3>
-                            <div class="caption-meta">
-                                <span><i class="far fa-clock"></i> 2026年6月12日</span>
-                                <span><i class="fas fa-users"></i> 大班 · 中班</span>
-                                <span><i class="fas fa-map-marker-alt"></i> 园内小剧场</span>
-                            </div>
-                            <div class="caption-desc">
-                                <i class="fas fa-quote-left" style="opacity:0.4;"></i>
-                                非洲鼓、手铃、合唱…… 孩子们用节奏和歌声表达快乐。
-                                小小的舞台，大大的梦想，每一个音符都是童年的光芒。
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- ===== 动态 5 ===== -->
-                    <div class="carousel-slide">
-                        <div class="slide-image" style="background: linear-gradient(135deg, #EDE7F6, #D1C4E9);">
-                            <span class="image-label"><i class="fas fa-calendar-check"></i> 2026.06.08</span>
-                            <span class="deco d1">🏅</span>
-                            <span class="deco d2">⚽</span>
-                            <span class="deco d3">💪</span>
-                            <span class="emoji-big">🏃‍♂️🏃‍♀️</span>
-                        </div>
-                        <div class="slide-caption">
-                            <span class="caption-tag"><i class="fas fa-trophy"></i> 体能活动</span>
-                            <h3><i class="fas fa-running"></i> 趣味运动会 · 亲子同行</h3>
-                            <div class="caption-meta">
-                                <span><i class="far fa-clock"></i> 2026年6月8日</span>
-                                <span><i class="fas fa-users"></i> 全园亲子家庭</span>
-                                <span><i class="fas fa-map-marker-alt"></i> 户外大操场</span>
-                            </div>
-                            <div class="caption-desc">
-                                <i class="fas fa-quote-left" style="opacity:0.4;"></i>
-                                毛毛虫竞速、袋鼠跳、接力跑…… 爸爸妈妈和孩子们一起
-                                挥洒汗水，在欢笑中感受运动的快乐，增进亲子情感。
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- 左右控制按钮 -->
-                <button class="carousel-btn prev" id="prevBtn" aria-label="上一页">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="carousel-btn next" id="nextBtn" aria-label="下一页">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-
-                <!-- 指示点 -->
-                <div class="carousel-dots" id="carouselDots"></div>
-
+          <div class="slide">
+            <div class="slide-img-wrap">
+              <img src="毕业2.jpg" alt="毕业照2">
             </div>
+            <div class="slide-caption">
+              <div class="slide-tag">毕业留念</div>
+              <div class="slide-heading">不谙世事的笑脸下面藏满了恋恋不舍...</div>
+              <div class="slide-text">那些天真烂漫的笑容里，藏着对幼儿园深深的眷恋与不舍。</div>
+            </div>
+          </div>
 
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- ===== 底部信息 ===== -->
-    <footer class="footer-bar">
-        <div class="container">
-            <span>
-                © 2026 <span class="brand-name">十五级乡中心幼儿园</span>
-                <i class="fas fa-heart"></i> 用心做教育
-            </span>
-            <span>
-                <i class="fas fa-map-pin"></i> 十五级乡中心街 88 号
-                <i class="fas fa-phone-alt" style="margin-left:16px;"></i> 0317-8888 6666
-            </span>
-            <span>
-                <a href="#"><i class="fab fa-weixin"></i></a>
-                <a href="#" style="margin-left:12px;"><i class="fab fa-weibo"></i></a>
-                <a href="#" style="margin-left:12px;"><i class="fab fa-tiktok"></i></a>
-            </span>
-        </div>
-    </footer>
+</div>
 
-    <!-- ===== JavaScript 轮播逻辑 ===== -->
-    <script>
-        (function() {
-            const track = document.getElementById('carouselTrack');
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            const dotsContainer = document.getElementById('carouselDots');
-            const slides = track.querySelectorAll('.carousel-slide');
-            let currentIndex = 0;
-            const totalSlides = slides.length;
-            let autoPlayTimer = null;
-            const AUTO_INTERVAL = 4000; // 4秒自动切换
+<!-- FLOATING SCROLL BUTTONS -->
+<div class="float-scroll">
+  <button class="float-scroll-btn" type="button" id="floatTop" aria-label="回到顶部">
+    <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+  <button class="float-scroll-btn" type="button" id="floatBottom" aria-label="回到底部">
+    <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+  </button>
+</div>
 
-            // --- 创建指示点 ---
-            slides.forEach((_, index) => {
-                const dot = document.createElement('span');
-                dot.classList.add('dot');
-                if (index === 0) dot.classList.add('active');
-                dot.dataset.index = index;
-                dot.addEventListener('click', () => goToSlide(index));
-                dotsContainer.appendChild(dot);
-            });
-            const dots = dotsContainer.querySelectorAll('.dot');
+<!-- IMAGE OVERLAY -->
+<div class="img-overlay" id="imgOverlay">
+  <button class="img-overlay-close" type="button" id="overlayClose">
+    <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <img src="" alt="" id="overlayImg">
+</div>
 
-            // --- 跳转到指定幻灯片 ---
-            function goToSlide(index) {
-                if (index < 0) index = totalSlides - 1;
-                if (index >= totalSlides) index = 0;
-                currentIndex = index;
-                track.style.transform = `translateX(-${currentIndex * 100}%)`;
-                dots.forEach((dot, i) => {
-                    dot.classList.toggle('active', i === currentIndex);
-                });
-                resetAutoPlay();
-            }
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img class="footer-logo" src="校徽.png" alt="校徽">
+      <span class="footer-name">十五级乡中心幼儿园</span>
+    </div>
+    <span class="footer-copy">&copy; 2026</span>
+  </div>
+</footer>
 
-            // --- 上一张 / 下一张 ---
-            function prevSlide() { goToSlide(currentIndex - 1); }
-            function nextSlide() { goToSlide(currentIndex + 1); }
+<script>
+  const track = document.getElementById('carouselTrack');
+  const curNum = document.getElementById('curNum');
+  const wrapper = document.getElementById('carouselWrapper');
+  const slides = track.querySelectorAll('.slide');
+  const total = slides.length;
+  let current = 0;
+  let timer;
 
-            // --- 自动播放控制 ---
-            function resetAutoPlay() {
-                if (autoPlayTimer) {
-                    clearInterval(autoPlayTimer);
-                    autoPlayTimer = null;
-                }
-                autoPlayTimer = setInterval(nextSlide, AUTO_INTERVAL);
-            }
+  function goTo(index) {
+    if (index < 0) index = total - 1;
+    if (index >= total) index = 0;
+    current = index;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    curNum.textContent = String(current + 1).padStart(2, '0');
+  }
 
-            function pauseAutoPlay() {
-                if (autoPlayTimer) {
-                    clearInterval(autoPlayTimer);
-                    autoPlayTimer = null;
-                }
-            }
+  function next() { goTo(current + 1); }
+  function prev() { goTo(current - 1); }
 
-            // --- 绑定事件 ---
-            prevBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                prevSlide();
-            });
-            nextBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                nextSlide();
-            });
+  // Auto scroll
+  function resetTimer() {
+    clearInterval(timer);
+    timer = setInterval(next, 4000);
+  }
 
-            // 鼠标悬停暂停 / 离开恢复
-            const wrapper = document.querySelector('.carousel-wrapper');
-            wrapper.addEventListener('mouseenter', pauseAutoPlay);
-            wrapper.addEventListener('mouseleave', resetAutoPlay);
+  resetTimer();
 
-            // 触摸滑动支持
-            let touchStartX = 0;
-            let touchEndX = 0;
-            wrapper.addEventListener('touchstart', (e) => {
-                touchStartX = e.changedTouches[0].screenX;
-            }, { passive: true });
-            wrapper.addEventListener('touchend', (e) => {
-                touchEndX = e.changedTouches[0].screenX;
-                const diff = touchStartX - touchEndX;
-                if (Math.abs(diff) > 30) {
-                    if (diff > 0) nextSlide();
-                    else prevSlide();
-                }
-            }, { passive: true });
+  // Hover pause
+  wrapper.addEventListener('mouseenter', () => {
+    clearInterval(timer);
+    track.classList.add('paused');
+  });
 
-            // --- 启动自动播放 ---
-            resetAutoPlay();
+  wrapper.addEventListener('mouseleave', () => {
+    track.classList.remove('paused');
+    resetTimer();
+  });
 
-            // 页面可见性变化时暂停/恢复（提升体验）
-            document.addEventListener('visibilitychange', () => {
-                if (document.hidden) {
-                    pauseAutoPlay();
-                } else {
-                    resetAutoPlay();
-                }
-            });
+  // Scroll to top / bottom
+  document.getElementById('floatTop').addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 
-        })();
-    </script>
+  document.getElementById('floatBottom').addEventListener('click', () => {
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+  });
+
+  // Keyboard
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') { prev(); resetTimer(); }
+    if (e.key === 'ArrowRight') { next(); resetTimer(); }
+    if (e.key === 'Escape') closeOverlay();
+  });
+
+  // Image expand on click
+  const overlay = document.getElementById('imgOverlay');
+  const overlayImg = document.getElementById('overlayImg');
+
+  document.querySelectorAll('.slide-img-wrap').forEach(wrap => {
+    wrap.addEventListener('click', () => {
+      const img = wrap.querySelector('img');
+      overlayImg.src = img.src;
+      overlayImg.alt = img.alt;
+      overlay.classList.add('open');
+    });
+  });
+
+  function closeOverlay() {
+    overlay.classList.remove('open');
+    setTimeout(() => { overlayImg.src = ''; }, 300);
+  }
+
+  document.getElementById('overlayClose').addEventListener('click', closeOverlay);
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeOverlay();
+  });
+</script>
 
 </body>
 </html>
